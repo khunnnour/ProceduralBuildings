@@ -8,3 +8,9 @@ public enum Wall
 	Window,
 	Door
 }
+
+public enum Floor
+{
+	Empty,
+	Stairs
+}

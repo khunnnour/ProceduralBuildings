@@ -6,21 +6,19 @@ public class Story
 {
 	int level;
 	Wall[] walls;
+	Floor[] floors;
 
-	public int Level
-	{
-		get { return level; }
-	}
+	public int Level { get { return level; } }
 
-	public Wall[] Walls
-	{
-		get { return walls; }
-	}
+	public Wall[] Walls { get { return walls; } }
 
-	public Story(int level, Wall[] walls)
+	public Floor[] Floors { get { return floors; } }
+
+	public Story(int level, Wall[] walls, Floor[] floors)
 	{
 		this.level = level;
 		this.walls = walls;
+		this.floors = floors;
 	}
 
 	public override string ToString()

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BuildingRenderer : MonoBehaviour
 {
     public float scale = 1f;
-    public Transform floorPrefab;
+    public Transform[] floorPrefabs;
     public Transform[] wallPrefabs;
     public Transform[] roofPrefabs;
     Transform bldgFolder;
@@ -55,7 +55,7 @@ public class BuildingRenderer : MonoBehaviour
         {
             for (int y = wing.Bounds.min.y; y < wing.Bounds.max.y; y++)
             {
-                PlaceFloor(x, y, story.Level, storyFolder);
+				PlaceFloor(x, y, story.Level, storyFolder, floorPrefabs[(int)story.Floors[x + y * wing.Bounds.max.x]]);
 
                 //south wall
                 if (y == wing.Bounds.min.y)
@@ -94,9 +94,9 @@ public class BuildingRenderer : MonoBehaviour
         }
     }
 
-    private void PlaceFloor(int x, int y, int level, Transform storyFolder)
+	private void PlaceFloor(int x, int y, int level, Transform storyFolder, Transform floor)
     {
-        Transform f = Instantiate(floorPrefab,
+        Transform f = Instantiate(floor,
             storyFolder.TransformPoint(new Vector3(x * -scale, 0f + level * scale, y * -scale)), Quaternion.identity);
         f.SetParent(storyFolder);
     }
